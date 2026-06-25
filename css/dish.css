@@ -94,3 +94,89 @@ Tells the user: Home > Category > This Recipes
 .rc-save-btn.saved .save-icon {
     color: var(--color-accent);
 }
+
+/*   HERO   */
+.rc-hero {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    background: var(--brown-deep);
+}
+
+.rc-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+    transition: transform 8s ease;
+}
+
+.rc-hero:hover::before {
+    transform: scale(1.06);
+}
+
+.rc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(20, 10, 5, 0.1) 0%,
+        rgba(20, 10, 5, 0.4) 40%,
+        rgba(20, 10, 5, 0.85) 100%,    
+    );
+    z-index: 1;
+}
+
+.rc-hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rc-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.rc-hero-badge {
+    background: var(--color-accent);
+    color: Var(--White);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--radius-xl);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.rc-hero-cuisine {
+    font-size: 0.78rem;
+    color: rgba(250,247, 242, 0.7);
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+}
+
+.rc-hero-rating {
+    font-size: 0.82rem;
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.rc-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    color: var(--cream);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
