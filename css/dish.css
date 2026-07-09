@@ -52,12 +52,12 @@ Tells the user: Home > Category > This Recipes
     color: var(--color-accent);
 }
 
-.bc-sep{
+.rc-crumb-sep{
     color: var(--color-text-muted);
     font-size: 0.75rem;
 }
 
-#bcRecipeName {
+#breadcrumbTitle {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -98,67 +98,96 @@ Tells the user: Home > Category > This Recipes
 /*   HERO   */
 .rc-hero {
     position: relative;
-    height: 520px;
+    height: 420px;
     overflow: hidden;
     background: var(--brown-deep);
 }
 
-.rc-hero::before {
-    content: "";
+/* Layer 1: food photograph */
+.rc-hero-img{
     position: absolute;
     inset: 0;
-    background-image: var(--hero-image);
     background-size: cover;
-    background-position: center;
-    transform: scale(1.02);
+    background-position: center 40%;
     transition: transform 8s ease;
 }
 
-.rc-hero:hover::before {
-    transform: scale(1.06);
+.rc-hero:hover .rc-hero-img {
+    transform: scale(1.04);
 }
 
-.rc-hero-overlay {
+/*layer 2 gradient - dark on left. fades to transparent right */
+.rc-hero-gradient {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        to bottom,
-        rgba(20, 10, 5, 0.1) 0%,
-        rgba(20, 10, 5, 0.4) 40%,
-        rgba(20, 10, 5, 0.85) 100%,    
-    );
+    to right,
+    rgba(15, 8, 2, 0.93) 0%,
+    rgba(15, 8, 2, 0.75) 45%,
+    rgba(15, 8, 2, 0.25) 75%,
+    rgba(15, 8, 2, 0.05) 100%
+  );
+
     z-index: 1;
 }
 
+/* layer 3: text content - left aligned */
 .rc-hero-content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     z-index: 2;
+    display: flex;
+    align-items: center;
     padding: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
+    left: 0;
+    right: 0;
 }
 
-.rc-hero-meta {
+/*
+   Inner wrapper - constraint text width 
+   so it don't run into the visible image 
+   on the right 
+   
+   */
+.rc-hero-left {
+    max-width: 480px;
+}
+
+/* Tags row - badge + cuisine + difficulty */
+.rc-hero-tags{
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
+    margin-bottom: 0.85rem;
 }
 
-.rc-hero-badge {
-    background: var(--color-accent);
-    color: Var(--White);
+.rc-hero-tag {
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 0.2rem 0.7rem;
     border-radius: var(--radius-xl);
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
+
+.rc-hero-tag-badge {
+    background: var(--color-accent);
+    color: var(--white);
+}
+
+.rc-hero-tag-meta {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(250, 247, 242, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+
+}
+
+
 
 .rc-hero-cuisine {
     font-size: 0.78rem;
@@ -168,15 +197,1229 @@ Tells the user: Home > Category > This Recipes
 }
 
 .rc-hero-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.82rem;
     color: var(--gold);
     font-weight: 600;
 }
 
+.rc-hero-rating-num {
+    font-size: 0.88rem;
+    color: rgba(250, 247, 242, 0.9);
+    font-weight: 600;
+}
+
+
+.rc-hero-rating-count {
+    font-size: 0.8rem;
+    color: rgba(250, 247, 242, 0.5);
+}
+
+.rc-hero-stars {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+
 .rc-hero-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 3.8rem);
     color: var(--cream);
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+
+}
+
+.rc-hero-title em {
+    font-style: italic;
+    color: var(--gold );
+}
+
+/* One -sentence teaser */
+.rc-hero-desc {
+    font-size: 0.92rem;
+    color: rgba(250, 247, 242, 0.65);
+    line-height: 1.65;
+    margin-bottom: 1.1rem;
+    max-width: 400px;
+}
+
+/*    Author Block    */
+.rc-hero-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.rc-hero-author img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+}
+
+.rc-hero-author-name {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: rgba(250, 247, 242, 0.9);
+}
+
+/* 
+STATS STRIP - Horizontal bar between hero and body 
+*/
+.rc-stats-strip {
+    background: var(--white);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: center;
+}
+
+.rc-stats-strip .rc-stat-row {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+
+}
+
+.rc-stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.1rem 0.5rem;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+}
+
+.rc-stat:last-child{
+    border-right: none;
+}
+
+.rc-stat-icon {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.rc-stat-value {
+    font-family:  var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--brown-deep);
+    line-height: 1.2;
+}
+
+.rc-stat-label {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 0.2rem;
+}
+
+/*  Mobile actions bar - hidden on desktop, shown on mobile  */
+.rc-mobile-actions {
+    display: none;
+}
+
+
+/*    BODY LAYOUT    */
+.rc-body {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    align-items: start;
+}
+
+
+/*   LEFT CONTENT    */
+.rc-left {
+    min-width: 0;
+}
+
+.rc-author-role {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+
+.rc-author-date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.15rem;
+}
+
+/*    Summary    */
+.rc-summary {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.rc-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 2rem 0;
+}
+
+/*    Section Headers     */
+.rc-section {
+    margin-bottom: 0;
+}
+
+.rc-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.rc-section-header h2 {
+    font-family:  var(--font-display);
+    font-size: 1.5rem;
+    color: var(--brown-deep);
+}
+
+.rc-step-count {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    background: var(--cream-dark);
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--radius-xl);
+}
+
+/*    INGREDIENT CONTROLS   */
+.rc-ingredient-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/*    SERVINGS ADJUSTER      */
+.rc-servings {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.rc-servings-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: var(--cream-dark);
+    color: var(--color-text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+
+}
+
+.rc-servings-btn:hover {
+    background: var(--color-accent);
+    color: var(--white);
+
+}
+
+.rc-servings-count {
+    padding: 0 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--white);
+    height: 34px;
+}
+
+.rc-servings-label {
+    font-weight: 400;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+
+}
+
+/*   UNIT TOGGLE  */
+.rc-unit-toggle {
+    display: flex;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.rc-unit-btn {
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    border: none;
+    background: var(--white);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rc-unit-btn.active {
+    background: var(--color-accent);
+    color: var(--white);
+}
+
+/*    INGREDIENT LIST   */
+.rc-ingredient-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+}
+
+.rc-ingredient-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid var(--cream-dark);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: var(--radius-sm);
+    position: relative;
+}
+
+
+.rc-ingredient-item:hover {
+    background: var(--cream-dark);
+}
+
+.rc-ingredient-item:last-child {
+    border-bottom: none;
+}
+
+/*  The circle - unchecked by default */
+.ingredient-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: var(--transition);;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: transparent;
+}
+
+/*   when ticked */
+.rc-ingredient-item.ticked .ingredient-check {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--white);
+}
+
+.rc-ingredient-item.ticked .ingredient-amount,
+.rc-ingredient-item.ticked .ingredient-name {
+    opacity: 0.4;
+    text-decoration: line-through;
+}
+
+.ingredient-amount {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--color-accent);
+    min-width: 80px;
+    transition: opacity 0.2s;
+}
+
+.ingredient-name {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    flex: 1;
+    line-height: 1.4;
+    transition: opacity 0.2s;
+}
+
+/*    Substitution Tooltip     */
+.ingredient-sub {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: calc(100 + 4px);
+    background: var(--brown-deep);
+    color: var(--cream);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+    max-width: 300px;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+.ingredient-sub::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    border: 5px solid transparent;
+    border-top-color: var(--brown-deep);
+}
+
+.rc-ingredient-item:hover .ingredient-sub {
+    display: block;
+}
+
+.ingredient-sub-icon {
+    color: var(--gold);
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+    flex-shrink: 0;
+}
+
+.rc-ingredient-note {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/*    STEPS     */
+.rc-steps-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.24rem;
+    counter-reset: steps;
+}
+
+.rc-step-item {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+}
+
+.rc-step-item:hover {
+    border-color: var(--color-accent);
+
+}
+
+.rc-step-item.completed {
+    opacity: 0.55;
+    background: var(--cream-dark);
+}
+
+.rc-step-item.completed .step-text {
+    text-decoration: line-through;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
+.rc-step-item.completed .step-number {
+    background: var(--olive-light);
+
+}
+
+.step-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    padding-top:0.4rem;
+    transition: opacity 0.2s;
+
+}
+
+/*      VIDEO     */
+.rc-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--brown-deep);
+}
+
+.rc-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius:  var(--radius-lg);
+}
+
+.rc-video-note {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.75rem;
+}
+
+
+/*     SIDEBAR       */
+.rc-sidebar {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/*    Card Base - used by all three sidebar cards   */
+.rc-stats-card,
+.rc-nutrition-card,
+.rc-actions-card {
+    background:  var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+
+}
+
+/*    NUTRITION BAR     */
+.rc-nutrition-card h3 {
+    font-family: var(--font-body);
+    font-size: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.rc-nutrition-bar {
+    display: flex;
+    height: 10px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+}
+
+.nutrition-segment {
+    height: 100%;
+    transition: width 0.4s ease;
+}
+
+.nutrition-protein {
+    background: #4CAF50;
+}
+
+.nutrition-carbs {
+    background: #FF9800;
+}
+
+.nutrition-fat {
+    background: #F44336;
+}
+
+.rc-nutrition-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.nutrition-legend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+}
+
+.nutrition-legend-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+}
+
+.nutrition-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.nutrition-value {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.rc-nutrition-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+/*    ACTION BUTTONS    */
+.rc-actions-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1rem;
+}
+
+.rc-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    text-align: left;
+}
+
+.action-icon {
+    font-size: 1rem;
+
+}
+
+.rc-action-save {
+    background:var(--color-accent);
+    color: var(--white);
+    border-color: var(--color-accent);
+}
+
+.rc-action-save:hover {
+    background: var(--terracotta-light);
+}
+
+.rc-action-save.saved {
+    background: var(--white);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.rc-action-mealplan {
+    background: var(--cream-dark);
+    color: var(--color-text);
+}
+
+.rc-action-mealplan:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.rc-action-print,
+.rc-action-download {
+    background: var(--white);
+    color: var(--color-text-secondary);
+    border-color: var(--color-border)
+}
+
+.rc-action-print:hover,
+.rc-action-download:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/*    RELATED RECIPES   */
+.rc-related {
+    background: var(--cream-dark);
+    padding: 4rem 2rem;
+}
+
+.rc-related-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.rc-related-inner h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--brown-deep);
+    margin-bottom: 2rem;
+}
+
+.rc-related-inner .recipe-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/*    REVIEWS    */
+.rc-reviews {
+    padding: 4rem 2rem;
+    background: var(--cream);
+}
+
+.rc-reviews-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.rc-reviews-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.rc-reviews-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--brown-deep);
+}
+
+.rc-rating-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rating-stars {
+    color: var(--gold);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.rating-number{
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brown-deep);
+}
+
+.rating-count {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.rc-review-cta {
+    background: var(--white);
+    border:1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    text-align: center;
+    max-width: 500px;
+
+}
+
+.rc-review-cta p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/*    RESPONSIVE     */
+@media (max-width: 1024px) {
+    .rc-body {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .rc-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .rc-actions-card {
+        grid-column: 1 / -1 ;
+    }
+
+    .rc-related-inner .recipe-grid {
+        grid-template-columns:  repeat(2, 1fr);
+
+    }
+}
+
+@media (max-width: 768px) {
+
+    .rc-hero {
+        height: 380px;
+        padding-top: 0;
+        padding-bottom: 15px;
+    }
+    
+
+    .rc-hero-title{
+        font-size: 1.8rem;
+    }
+
+    .rc-body {
+        padding: 1.5rem 1rem 3rem;
+    }
+
+    .rc-sidebar{
+        grid-template-columns: 1fr;
+    }
+
+    .rc-ingredient-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rc-related {
+        padding: 2.5rem 1rem;
+    }
+
+    .rc-related-inner .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+    .rc-breadcrumb {
+        display: none;
+    }
+
+
+    /* STATS STRIP - on mobile, hide the labels and just show the icons */
+    .rc-stats-strip .rc-stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0;
+        max-width: 100%;
+    }
+    .rc-stat {
+        padding: 0.85rem 0.4rem;
+        border-right: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+    }
+ 
+    /* Remove right border from last column */
+    .rc-stat:nth-child(3),
+    .rc-stat:nth-child(6) {
+        border-right: none;
+    }
+ 
+    /* Remove bottom border from last row */
+    .rc-stat:nth-child(4),
+    .rc-stat:nth-child(5),
+    .rc-stat:nth-child(6) {
+        border-bottom: none;
+    }
+ 
+    .rc-stat-value {
+        font-size: 0.95rem;
+    }
+ 
+    .rc-stat-label {
+        font-size: 0.62rem;
+    }
+ 
+    /* Show the mobile actions bar — hidden on desktop */
+    .rc-mobile-actions {
+        display: flex;
+    }
+
+
+    /*       MOBILE ACTIONS BAR      */
+    .rc-mobile-actions {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: var(--cream-dark);
+        border-bottom: 1px solid var(--color-border);
+    }
+ 
+    .rc-mobile-action-btn {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.6rem 0.4rem;
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 500;
+        border: 1.5px solid var(--color-border);
+        background: var(--white);
+        color: var(--color-text);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+ 
+    .rc-mobile-action-btn.primary {
+        background: var(--color-accent);
+        color: var(--white);
+        border-color: var(--color-accent);
+    }
+ 
+    .rc-mobile-action-btn span:first-child {
+        font-size: 1.1rem;
+    }
+ 
+    /* Hide the sidebar action card on mobile — replaced by bar above */
+    .rc-actions-card {
+        display: none;
+    }
+    
+    /*    INGREDIENTS CONTROLS - stacked on mobile   */ 
+   .rc-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+ 
+    .rc-servings-control {
+        width: 100%;
+        justify-content: space-between;
+    }
+ 
+    .rc-unit-toggle {
+        align-self: flex-end;
+    }
+
+    /*   NUTRITION CARD   */
+    .rc-nutrition-card {
+        width: 100%;
+    }
+
+
+}
+
+
+
+/*    
+PRINT STYLES
+When user hits print, hide everything except
+the recipes content. 
+
+    */
+    @media print {
+        .rc-nav,
+        .rc-hero-gradient,
+        .rc-sidebar,
+        .rc-related,
+        .rc-reviews,
+        .rc-video-wrap,
+        .rc-video-note{
+            display: none !important;
+        }
+
+        .rc-body {
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        .rc-hero {
+            height: 200px;
+        }
+
+        body {
+            background: white;
+        }
+    }
+
+/*      NAV ACTIONS      */
+.rc-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+/*     HERO AUTHOR     */
+.rc-hero-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.rc-hero-author img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    object-fit: cover;
+}
+
+.rc-hero-author-name {
+    font-size: 0.85rem;
+    color: rgba(250, 247, 242, 0.85);
+    font-weight: 500;
+}
+
+.rc-hero-author-role {
+    font-size: 0.72rem;
+    color: rgba(250, 247, 242, 0.55);
+}
+
+/*     SERVINGS CONTROL      */
+.rc-servings-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rc-servings-label{
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.rc-servings-count {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    min-height: 24px;
+    text-align: center;
+}
+
+/*        REVIEWS DISPLAY       */
+.rc-reviews-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.rc-reviews-display .rating-stars {
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+
+}
+
+/*      REST STEPS BUTTON       */
+.rc-reset-steps {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 0.3rem 0.85rem;
+    font-size: 0.78rem;
+    font-family: var(--font-body);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.rc-reset-steps:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+/*      VIEW ALL LINK       */
+.rc-view-all {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.rc-view-all:hover {
+    opacity: 0.75;
+}
+
+/*      NUTRITION PER LABEL     */
+.rc-nutrition-per {
+    font-weight: 400;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/*      NUTRITION NOTE      */
+.rc-nutrition-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+
+}
+
+/* AUTHOR INITIALS AVATAR
+    Generated from author name - no image URL needed.
+*/
+.rc-hero-author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem;
+    letter-spacing: 0.2em;
+}
+
+.rc-hero-author-meta {
+    font-size: 0.72rem;
+    color: rgba(250, 247, 242, 0.55);
+    margin-top: 0.15rem;
+    line-height: 1.4;
+    max-width: 280px;
+}
+
+/*  YOUTUBE LINK
+    lOOKS like a button, clearly external (opens new tab)
+*/
+.rc-youtube-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.65rem 1.25rem;
+    background: #FF0000;
+    color: var(--white);
+    border-radius: var(--radius-xl);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+
+}
+
+.rc-youtube-link:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255,0,0,0.35);
+}
+
+.recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+ 
+.recipe-card-link:hover .recipe-card {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Remove hover from the card itself since the link handles it */
+.rc-related .recipe-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/*  INLINE NUTRITION PANEL
+        Hidden completely on desktop — the sidebar nutrition card
+        handles desktop. This only appears on mobile where the
+        sidebar doesn't exist
+ */
+
+ .rc-inline-nutrition {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  margin: 1rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+ 
+.rc-nutrition-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background: var(--cream-dark);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+ 
+.rc-nutrition-toggle:hover {
+  background: var(--cream);
+}
+ 
+.rc-nutrition-chevron {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+ 
+/* The panel — collapsed by default */
+.rc-nutrition-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding: 0 1rem;
+  background: var(--white);
+}
+ 
+/* When open — panel expands */
+.rc-inline-nutrition.is-open .rc-nutrition-panel {
+  max-height: 400px;
+  padding: 1rem;
+}
+ 
+/* Chevron rotates when open */
+.rc-inline-nutrition.is-open .rc-nutrition-chevron {
+  color: var(--color-accent);
+}
+ 
+
+
+/* Update toggle text handled by JS —
+   chevron text changes from "▼ Show" to "▲ Hide" */
+ 
+@media (max-width: 768px) {
+  /* Show inline nutrition on mobile */
+  .rc-inline-nutrition {
+    display: flex;
+  }
+ 
+  /* Hide sidebar nutrition card on mobile —
+     replaced by the inline panel above */
+  .rc-nutrition-card {
+    display: none;
+  }
 }
