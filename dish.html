@@ -40,13 +40,46 @@
   Hero
   -->
   <div class="rc-hero" id="rcHero">
-    <div class="rc-hero-overlay"></div>
+    <div class="rc-hero-img" id="rcHeroImg"></div>
+    <div class="rc-hero-gradient"></div>
     <div class="rc-hero-content">
-      <div class="rc-hero-meta" id="rcHeroMeta"></div>
-      <h1 class="rc-hero-title" id="rcHeroTitle">Loading...</h1>
-      <div class="rc-hero-author" id="rcHeroAuthor"></div>
+      <div class="rc-hero-left">
+        <div class="rc-hero-tags" id="rcHeroMeta"></div>
+        <h1 class="rc-hero-title" id="rcHeroTitle">Loading...</h1>
+        <p class="rc-hero-desc" id="rcHeroDesc"></p>
+        <div class="rc-hero-author" id="rcHeroAuthor"></div>
+        <div class="rc-hero-rating" id="rcHeroRating"></div>
+      </div>
     </div>
   </div>
+
+  <!--
+  STATS STRIP - Horizontal bar below hero
+  sits between hero and body so stats are 
+  immediately visible without scrolling
+  -->
+  <div class="rc-stats-strip" id="rcStatsStrip">
+    <div class="rc-stat-row" id="rcStatRows"></div>
+  </div>
+
+  <!--  MOBILE ACTIONS BAR -->
+<div class="rc-mobile-actions" id="rcMobileActions">
+  <button class="rc-mobile-action-btn primary" id="mobileSaveBtn">
+    <span>♡</span>
+    <span>Save</span>
+  </button>
+
+  <button class="rc-mobile-action-btn" id="mobileMealBtn">
+    <span>📅</span>
+    <span>Meal Plan</span>
+  </button>
+
+  <button class="rc-mobile-action-btn" id="mobilePrintBtn">
+    <span>🖨</span>
+    <span>Print</span>
+  </button>
+</div>
+
 
   <!--
     BODY — two column layout
@@ -104,6 +137,23 @@
           <ul class="rc-ingredients-list" id="ingredientsList"></ul>
           </section>
 
+      <!--MOBILE NUTRITION PANEL
+        Its between ingredients and instructions — exactly where
+        it's contextually relevant. User just read the ingredients
+        and now sees how they add up nutritionally
+        -->
+      <div class="rc-inline-nutrition" id="rcInlineNutrition">
+        <button class="rc-nutrition-toggle" id="nutritionToggle" aria-expanded="false">
+          <span>Nutrition per serving</span>
+          <span class="rc-nutrition-chevron" id="nutritionChevron">▼ Show</span>
+        </button>
+        <div class="rc-nutrition-panel" id="nutritionPanel">
+          <div class="rc-nutrition-bar" id="nutritionBarMobile"></div>
+          <div class="rc-nutrition-legend" id="nutritionLegendMobile"></div>
+          <p class="rc-nutrition-note">Values scale with serving size</p>
+        </div>
+      </div>
+
       <!--Instructions-->
       <section class="rc-section" id="stepsSection">
         <div class="rc-section-header">
@@ -134,12 +184,6 @@
 
       <!-- RIGHT SIDEBAR -->
        <aside class="rc-sidebar" id="rcSidebar">
-
-      <!--Quick stats-->
-      <div class="rc-stats-card">
-        <div class="rc-stat-row" id="rcStatRows"></div>
-      </div>
-
     <!-- 
     NUTRITION BAR
     Visual breakdown of protein, carbs, fat.
@@ -194,7 +238,7 @@ Keeps users browsing - the "watch next" principle.
     </div>
     <div class="rc-reviews-display" id="reviewsDisplay"></div>
     <div class="rc-review-cta">
-      <p>Have yoy made this recipe?</p>
+      <p>Have you made this recipe?</p>
       <button class="btn-primary" onclick="alert('Sign up to leave a review - coming soon!')">
         Leave a review
       </button>
