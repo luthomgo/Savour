@@ -8,9 +8,9 @@
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
-[View Live](#) · [Report a Bug](https://github.com/[your-username]/savour/issues) · [Request a Feature](https://github.com/[your-username]/savour/issues)
+[View Live](#) · [Report a Bug](https://github.com/luthomgo/savour/issues) · [Request a Feature](https://github.com/luthomgo/savour/issues)
 
-</div>
+</div> 
 
 ---
 
@@ -136,7 +136,7 @@ No installation needed. No build step. No server required.
 
 1. Clone the repo
 ```bash
-git clone https://github.com/[your-username]/savour.git
+git clone https://github.com/luthomgo/savour.git
 ```
 
 2. Open `index.html` in your browser
@@ -167,8 +167,8 @@ That is it. Every page works by opening the HTML file directly.
 
 **Lutho Mgolombane** — Full-stack developer and AI engineer based in Cape Town, South Africa.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/[your-linkedin])
-[![Portfolio](https://img.shields.io/badge/Portfolio-C4622D?style=flat&logo=firefox&logoColor=white)](#)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lutho-mgolombane/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-C4622D?style=flat&logo=firefox&logoColor=white)](https://luthomgo.netlify.app/)
 
 ---
 
